@@ -21,7 +21,7 @@
 
   * gcc/clang on linux/osx
   1. 克隆仓库
-  bash
+```bash
 $ git clone git@github.com:Alinshans/MyTinySTL.git
 $ cd MyTinySTL
 ```
