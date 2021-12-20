@@ -21,7 +21,7 @@ namespace hwstl
     };
 
     template <bool b>
-    using m_bool_constant = m_integral_constant;
+    using m_bool_constant = m_integral_constant<bool, b>;
 
 }
 #endif
