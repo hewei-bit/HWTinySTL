@@ -4,7 +4,7 @@
  * @Author : hewei (hewei_1996@qq.com)
  * @Version : 1.0
  * @Creat Date : 2021-12-19
- *
+ * @flag:finished
  */
 
 #ifndef HWTINYSTL_TYPE_TRAITS_H_
