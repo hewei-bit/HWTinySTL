@@ -27,24 +27,40 @@ namespace hwstl
     {
     };
     //双向迭代器
-    struct bidirectional_iterator_tag:public forward_iterator_tag
-    {};
+    struct bidirectional_iterator_tag : public forward_iterator_tag
+    {
+    };
     //随机访问迭代器
-    struct random_access_iterator_tag:public bidirectional_iterator_tag
-    {};
+    struct random_access_iterator_tag : public bidirectional_iterator_tag
+    {
+    };
 
-    //iterator 模板
-    template <typename Category,typename T,typename Distance = ptrdiff_t,
-    typename Pointer = T*,typename Reference = T &>
+    // iterator 模板
+    template <typename Category, typename T, typename Distance = ptrdiff_t,
+              typename Pointer = T *, typename Reference = T &>
     struct iterator
     {
         typedef Category iterator_category;
-        typedef T 
+        typedef T value_type;
+        typedef Pointer Pointer;
+        typedef Reference reference;
+        typedef Distance difference_type;
     };
-    
+
+    // iterator_traits
+    template <typename T>
+    struct has_iterator_cat
+    {
+    private:
+        struct two
+        {
+            char a;
+            char b;
+        };
+        template <typename U>
+        static two test(...);
+    };
 
 }
-
-
 
 #endif
