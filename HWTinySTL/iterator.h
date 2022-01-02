@@ -59,6 +59,84 @@ namespace hwstl
         };
         template <typename U>
         static two test(...);
+
+        template <typename U>
+        static char test(typename U::iterator_category * = 0);
+
+    public:
+        static const bool value = sizeof(test<T>(0)) == sizeof(char);
+    };
+
+    template <typename Iterator, bool>
+    struct iterator_traits_impl
+    {
+    };
+    template <typename Iterator>
+    struct iterator_traits_impl<Iterator, true>
+    {
+        typedef typename Iterator::iterator_category iterator_category;
+        typedef typename Iterator::value_type value_type;
+        typedef typename Iterator::pointer pointer;
+        typedef typename Iterator::reference reference;
+        typedef typename Iterator::difference_type difference_type;
+    };
+
+    template <typename Iterator, bool>
+    struct iterator_traits_helper
+    {
+    };
+
+    template <typename Iterator>
+    struct iterator_traits_helper<Iterator, true>
+        : public iterator_traits_impl<Iterator,
+                                      std::is_convertible<typename Iterator::iterator_category, input_iterator_tag>::value ||
+                                          std::is_convertible<typename Iterator::iterator_category, output_iterator_tag>::value>
+
+    {
+    };
+
+    //萃取迭代器特性
+    template <typename Iterator>
+    struct iterator_traits
+        : public iterator_traits_helper<Iterator, has_iterator_cat<Iterator>::value>
+    {
+    };
+
+    //针对原生指针的偏特化版本
+    template <class T>
+    struct iterator_traits<T *>
+    {
+        typedef random_access_iterator_tag iterator_category;
+        typedef T value_type;
+        typedef T *pointer;
+        typedef T &reference;
+        typedef ptrdiff_t difference_type;
+    };
+
+    template <typename T>
+
+    struct iterator_traits<const T *>
+    {
+        typedef random_access_iterator_tag iterator_category;
+        typedef T value_type;
+        typedef const T *pointer;
+        typedef const T &reference;
+        typedef ptrdiff_t difference_type;
+    };
+
+    template <class T, class U, bool = has_iterator_cat<iterator_traits<T>>::value>
+    struct has_iterator_cat_of
+        : public m_bool_constant<
+              std::is_convertible<
+                  typename iterator<T>::iterator_category, U>::value>
+    {
+        /* data */
+    };
+
+    //萃取某种迭代器
+    template <typename T, typename U>
+    struct has_iterator_cat_of<T, U, false> : public : m_false_type
+    {
     };
 
 }
