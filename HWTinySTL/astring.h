@@ -1,7 +1,7 @@
-#ifndef HWTINYSTL_EXCEPTDEF_H_
-#define HWTINYSTL_EXCEPTDEF_H_
+#ifndef HWTINYSTL_ASTRING_H_
+#define HWTINYSTL_ASTRING_H_
 /**
- * @File Name: exceptdef.h
+ * @File Name: astring.h
  * @Brief :
  * @Author : hewei (hewei_1996@qq.com)
  * @Version : 1.0
