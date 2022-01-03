@@ -1,10 +1,9 @@
 # HWTinySTL
 =====
+
 ## 简介
-   模仿MyTinySTL的项目，基于 C++11 的 tinySTL，实现了大部分 STL 中的容器与函数。作为新手练习用途。
-
+    模仿MyTinySTL的项目，基于 C++11 的 tinySTL，实现了大部分 STL 中的容器与函数。作为新手练习用途。
 ## 支持
-
 * 操作系统
   * linux
   * windows
@@ -32,11 +31,5 @@ $ make
 $ cd ../bin && ./stltest
 ```
 
-## 模板类
-### 序列容器
-  1. array 
-  2. vector
-  3.     
-### 关联容器
-### 无序关联容器
+
 

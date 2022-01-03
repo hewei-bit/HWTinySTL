@@ -1,11 +1,17 @@
 #ifndef HWTINYSTL_UTIL_H_
 #define HWTINYSTL_UTIL_H_
-// 这个文件包含一些通用工具，
-// 包括 move, forward, swap 等函数，以及 pair 等
+/**
+ * @File Name: util.h
+ * @Brief : 这个文件包含一些通用工具，
+ *          包括 move, forward, swap 等函数，以及 pair 等
+ * @Author : hewei (hewei_1996@qq.com)
+ * @Version : 1.0
+ * @Creat Date : 2022-01-03
+ *
+ */
+
 #include <cstddef>
-
 #include "type_traits.h"
-
 namespace hwstl
 {
     // move

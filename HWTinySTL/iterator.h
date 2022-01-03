@@ -1,3 +1,5 @@
+#ifndef HWTINYSTL_ITERATOR_H_
+#define HWTINYSTL_ITERATOR_H_
 /**
  * @File Name: iterator.h
  * @Brief : 用于迭代器设计，包含了一些模板结构体与全局函数，
@@ -6,10 +8,8 @@
  * @Creat Date : 2021-12-24
  *
  */
-#ifndef HWTINYSTL_ITERATOR_H_
-#define HWTINYSTL_ITERATOR_H_
-#include <cstddef>
 
+#include <cstddef>
 #include "type_traits.h"
 namespace hwstl
 {

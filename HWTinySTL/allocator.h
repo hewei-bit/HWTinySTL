@@ -1,15 +1,13 @@
+#ifndef HWTINYSTL_ALLOCATOR_H_
+#define HWTINYSTL_ALLOCATOR_H_
 /**
  * @File Name: allocator.h
- * @Brief : allocator用于管理内存的分配、释放，对象的构造、析构
+ * @Brief : allocator分配器用于管理内存Containers的分配、释放，对象的构造、析构
  * @Author : hewei (hewei_1996@qq.com)
  * @Version : 1.0
  * @Creat Date : 2021-12-25
  *
  */
-
-#ifndef HWTINYSTL_ALLOCATOR_H_
-#define HWTINYSTL_ALLOCATOR_H_
-
 namespace hwstl
 {
     //模板类：allocator
@@ -32,7 +30,9 @@ namespace hwstl
 
         static void deallocate(T *ptr);
         static void deallocate(T *ptr, size_type n);
-    }
+
+        static void construct
+    };
 }
 
 #endif
