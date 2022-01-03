@@ -36,18 +36,20 @@ namespace hwstl
     };
 
     // iterator 模板
+    // 罗列出iterator必须给算法提供的5种数据类型
     template <typename Category, typename T, typename Distance = ptrdiff_t,
               typename Pointer = T *, typename Reference = T &>
     struct iterator
     {
-        typedef Category iterator_category;
-        typedef T value_type;
-        typedef Pointer Pointer;
-        typedef Reference reference;
-        typedef Distance difference_type;
+        typedef Category iterator_category; //迭代器类别
+        typedef T value_type;               //数据类型
+        typedef Pointer Pointer;            //数据指针
+        typedef Reference reference;        //数据引用
+        typedef Distance difference_type;   //两个迭代器之间距离
     };
 
     // iterator_traits
+    // 用以分离class iterator（vector、map、list...） 和 nonclass iterator（指针）
     template <typename T>
     struct has_iterator_cat
     {
@@ -59,7 +61,6 @@ namespace hwstl
         };
         template <typename U>
         static two test(...);
-
         template <typename U>
         static char test(typename U::iterator_category * = 0);
 
@@ -102,7 +103,7 @@ namespace hwstl
     {
     };
 
-    //针对原生指针的偏特化版本
+    //针对 nonclass iterator 即原生指针的偏特化版本
     template <class T>
     struct iterator_traits<T *>
     {
@@ -114,7 +115,6 @@ namespace hwstl
     };
 
     template <typename T>
-
     struct iterator_traits<const T *>
     {
         typedef random_access_iterator_tag iterator_category;
