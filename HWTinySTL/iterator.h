@@ -139,6 +139,32 @@ namespace hwstl
     {
     };
 
+    template <class ITer>
+    struct is_input_iterator : public has_iterator_cat_of<ITer, input_iterator_tag>
+    {
+    };
+
+    template <class ITer>
+    struct is_output_iterator : public has_iterator_cat_of<ITer, output_iterator_tag>
+    {
+    };
+
+    template <class ITer>
+    struct is_forward_iterator : public has_iterator_cat_of<ITer, bidirectional_iterator_tag>
+    {
+    };
+
+    template <typename ITer>
+    struct is_random_access_iterator : public has_iterator_cat_of<ITer, random_access_iterator_tag>
+    {
+    };
+
+    template <typename Iterator>
+    struct is_iterator : public m_bool_constant<is_input_iterator<iterator>::value ||
+                                                is_output_iterator<iterator>::value>
+    {
+    };
+
 }
 
 #endif
