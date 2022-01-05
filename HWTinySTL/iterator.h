@@ -288,7 +288,7 @@ namespace hwstl
             return current;
         }
 
-        //重载操作符
+        //重载操作符,重载操作符里面有一个隐藏的this
         reference operator*() const
         {
             //实际对应正向迭代器的前一个位置
