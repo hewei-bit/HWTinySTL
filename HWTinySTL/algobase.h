@@ -9,4 +9,9 @@
  *
  */
 
+#include <cstring>
+
+#include "iterator.h"
+#include "util.h"
+
 #endif
