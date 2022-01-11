@@ -17,4 +17,17 @@
 //   * reserve
 //   * resize
 //   * insert
+
+#include <initializer_list>
+
+#include "iterator.h"
+#include "memory.h"
+#include "util.h"
+#include "exceptdef.h"
+namespace hwstl
+{
+#ifdef max
+
+#endif
+}
 #endif

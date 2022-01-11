@@ -33,10 +33,12 @@
 
 * 1.2关联容器
   * rb_tree
-    * set
-    * multset
-    * map
-    * multmap
+  
+    * set/multiset
+        set/multiset 元素的value和key,value就是key
+    * map/multimap
+        map/mutimap 
+        
 
 * 1.3无序关联容器
   * hashtable
