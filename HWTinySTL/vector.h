@@ -27,7 +27,14 @@
 namespace hwstl
 {
 #ifdef max
+#pragma message("#undefing marco max")
+#undef max
+#endif // max
 
-#endif
+#ifdef min
+#pragma message("#undefing marco min")
+#undef min
+#endif // min
+
 }
 #endif
