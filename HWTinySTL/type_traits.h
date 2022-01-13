@@ -29,15 +29,15 @@ namespace hwstl
     // type traits
     // is_pair
     // --- forward declaration begin
-    template <class T1, class T2>
+    template <typename T1, typename T2>
     struct pair;
     // --- forward declaration end
 
-    template <class T>
+    template <typename T>
     struct is_pair : hwstl::m_false_type
     {
     };
-    template <class T1, class T2>
+    template <typename T1, typename T2>
     struct is_pair<hwstl::pair<T1, T2>> : hwstl::m_true_type
     {
     };
