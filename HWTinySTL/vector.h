@@ -36,5 +36,44 @@ namespace hwstl
 #undef min
 #endif // min
 
+    // 模板类: vector
+    // 模板参数 T 代表类型
+    template <typename T>
+    class vector
+    {
+        static_assert(!std::is_same<bool, T>::value, "vector<bool> is abandoned in hwstl");
+
+    public:
+        // vector 的嵌套
+        typedef hwstl::allocator<T> allocator_type;
+        typedef hwstl::allocator<T> data_allocator;
+
+        typedef typename allocator_type::value_type value_type;
+        typedef typename allocator_type::pointer pointer;
+        typedef typename allocator_type::const_pointer const_pointer;
+        typedef typename allocator_type::reference reference;
+        typedef typename allocator_type::const_reference const_reference;
+        typedef typename allocator_type::size_type size_type;
+        typedef typename allocator_type::difference_type difference_type;
+
+        //因为是连续空间，所以直接拿指针当迭代器
+        typedef value_type *iterator;
+        typedef const value_type *const_iterator;
+        typedef hwstl::reverse_iterator<iterator> reverse_iterator;
+        typedef hwstl::reverse_iterator<const iterator> const_reverse_iterator;
+
+        allocator_type get_allocator() { return data_allocator(); }
+
+    private:
+        iterator begin_; //表示目前使用空间的头部
+        iterator end_;   //表示目前使用空间的尾部
+        iterator cap_;   //表示目前存储空间的尾部
+
+    public:
+        //构造、复制、移动、析构函数
+        vector();
+        ~vector();
+    };
+
 }
 #endif
