@@ -13,7 +13,7 @@
 #include <cassert>
 namespace hwstl
 {
-#define MYSTL_DEBUG(expr) \
+#define HWSTL_DEBUG(expr) \
     assert(expr)
 
 #define THROW_LENGTH_ERROR_IF(expr, what) \
