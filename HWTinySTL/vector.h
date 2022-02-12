@@ -71,9 +71,93 @@ namespace hwstl
 
     public:
         //构造、复制、移动、析构函数
-        vector();
-        ~vector();
+        vector() noexcept
+        {
+            try_init();
+        }
+
+        explicit vector(size_type n)
+        {
+            fill_init(n, value_type());
+        }
+
+        vector(size_type n, const value_type &value)
+        {
+            fill_init(n, value);
+        }
+
+        template <class Iter, typename std::enable_if<hwstl::is_input_iterator<Iter>::value, int>::type = 0>
+        vector(Iter first, Iter last)
+        {
+            HWSTL_DEBUG(!(last < first));
+            range_init(first, last);
+        }
+
+        vector(const vector &rhs)
+        {
+            range_init(rhs.begin_, rhs.end_);
+        }
+
+        vector(vector &&rhs) noexcept
+            : begin_(rhs.begin_), end_(rhs.end_), cap_(rhs.cap_)
+        {
+            rhs.begin_ = nullptr;
+            rhs.end_ = nullptr;
+            rhs.cap_ = nullptr;
+        }
+
+        vector(std::initializer_list<value_type> ilist)
+        {
+            range_init(ilist.begin(), ilist.end());
+        }
+
+                ~vector();
+
+    private:
+        // helper functions
+        // initialize / destroy
+        void try_init() noexcept;
+        void init_space(size_type size, size_type cap);
+        void fill_init(size_type n, const value_type &value_type);
+
+        template <class Iter>
+        void range_init(Iter first, Iter last);
+
+        void destroy_and_recover(iterator first, iterator last, size_type n);
+
+        // calculate the growth size
+        size_type get_new_cap(size_type add_size);
+
+        // assign
+        void fill_assign(size_type n, const value_type &value);
+
+        template <class IIter>
+        void copy_assign(IIter first, IIter last, input_iterator_tag);
+
+        template <class FIter>
+        void copy_assign(FIter first, FIter last, input_iterator_tag);
+
+        // reallocate
+        template <class... Args>
+        void reallocate_emplace(iterator pos, Args &&...args);
+        void reallocate_insert(iterator pos, const value_type &value);
+
+        // insert
+        iterator fill_insert(iterator pos, size_type n, const value_type &value);
+        template <class IIter>
+        void copy_insert(iterator pos, IIter first, IIter last);
+
+        // shrink_to_fit
+        void reinsert(size_type size);
     };
+
+    /*****************************************************************************************/
+    // helper function
+    // try_init 函数，若分配失败则忽略，不抛出异常
+    template <class T>
+    void vector<T>::try_init() noexcept
+    {
+    }
 
 }
 #endif
